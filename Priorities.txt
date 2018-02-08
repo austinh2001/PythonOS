@@ -1,0 +1,3 @@
+
+SearchBox:0
+DogeCoin:1
