@@ -83,11 +83,15 @@ def standingItem(backgroundImg, imagename, xCord, yCord):
 
 def searchBoxCreate(imagename, xCord, yCord, close, count):
         if close == 1:
-            #
+            startDisplay(backgroundImg, 0, 0)
+            if True:
+                standingItemScale("TestWindow.png", .75, .45, 0, 0)
             return ("Reset")
         if checkButtons()[0] == 1 and count == 0:
             if close == 0:
-                #
+                startDisplay(backgroundImg, 0, 0)
+                if True:
+                    standingItemScale("TestWindow.png", .75, .45, 0, 0)
                 picture = createImage(str(imagename))
                 Cords = imageCenter(picture.get_width(), picture.get_height(), xCord, yCord)
                 xCordShift = Cords[0]
@@ -97,7 +101,7 @@ def searchBoxCreate(imagename, xCord, yCord, close, count):
         else:
             return (-1, -1)
 
-
+startDisplay(backgroundImg, 0, 0)
 def mouseFollowItem(imagename, xCord, yCord):
     #
     picture = createImage(str(imagename))
@@ -176,6 +180,7 @@ rightButtonClicked = 0
 while not closed:
 
     for event in pygame.event.get():
+        #startDisplay(backgroundImg, 0, 0)
         print(event)
         if event.type == pygame.QUIT:
             closed = True
@@ -209,11 +214,15 @@ while not closed:
         elif standCount == -1:
             xStillWindow = -1
             yStillWindow = -1
-        standingItemScale("TestWindow.png", .75, .45, 0, 0)
+
+        if True:
+           standingItemScale("TestWindow.png", .75, .45, 0, 0)
 
         #Open Up a Search Box with left button, close with right#############################
         #pygame.event.post(backgroundClick)
+
         if True: #event == backgroundClick:
+
             imageCords = searchBoxCreate("SearchBox.jpg", xCord, yCord, close, count)
             if imageCords == "Reset":
                 close = 0
@@ -228,16 +237,19 @@ while not closed:
                 else:
                     xImageCord = xImageCord
                     yImageCord = yImageCord
+                    startDisplay(backgroundImg, 0, 0)
                 count = count + 1
             if mouseButtons[0] == 1 and mouseCord[0] >= int(findAreaPos(createImage(str('SearchBox.jpg')), xImageCord, yImageCord)[0][0]) and mouseCord[0] <= int(findAreaPos(createImage(str('SearchBox.jpg')), xImageCord, yImageCord)[3][0]) and mouseCord[1] >= int(findAreaPos(createImage('SearchBox.jpg'), xImageCord, yImageCord)[0][1]) and mouseCord[1] <= int(findAreaPos(createImage('SearchBox.jpg'), xImageCord, yImageCord)[3][1]) and xImageCord != -1 and yImageCord != -1:
                 count = 0
-
                 mouseFollowItem('SearchBox.jpg', mouseCord[0], mouseCord[1])
             close = searchBoxCheckClose("SearchBox.jpg", xImageCord, yImageCord)
 
+
+
+
             #####################################################################################
 
-        startDisplay(backgroundImg, 0, 0)
+
         # MiddleButton
         if middleButton == 1:
             print("Farming")
@@ -246,7 +258,6 @@ while not closed:
             print("CinderappleCow")
         ##############################################################################
         #tempItemScale(backgroundImg, 'DogeCoin.png', leftButton, .125, xCord, yCord)
-
 
     pygame.display.update()
     clock.tick(60)
